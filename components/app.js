@@ -2,19 +2,19 @@ import React, {Component} from 'react'
 import io from 'socket.io-client'
 
 class App extends Component {
-  constructor () {
-    super()
-    this.socket = 'helo'
+  constructor (props) {
+    super(props)
+    this.socket = 'hello'
+    this.connect = this.connect.bind(this)
   }
 
-  // componentWillMount () {
-  //   this.socket = io('http://localhost:3000')
-
-  //   this.socket.on('connect', this.connect)
-  // }
+  componentDidMount () {
+    this.socket = io('http://localhost:3000')
+    this.socket.on('connect', this.connect)
+  }
 
   connect () {
-    alert('connected: ' + this.socket)
+    alert('connected: ' + this.socket.id)
   }
 
   render () {
